@@ -1,27 +1,116 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Router from 'vue-router'
 
-Vue.use(VueRouter)
+import Dashboard from "@/views/Dashboard"
+import SignIn from "@/views/SignIn"
+import ForgotPassword from '@/views/ForgotPassword'
+import ClientList from "@/views/ClientList"
+import UserDetails from "@/views/UserDetails"
+import CompanyList from "@/views/CompanyList"
+import CompanyDetails from "@/views/CompanyDetails"
+import HearingList from "@/views/HearingList"
+import Questionaries from "@/views/Questionaries"
+import Lost from '@/views/Lost'
 
-const routes = [
-  {
-    path: '/',
-    name: 'Home',
-    component: Home
-  },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
-]
+import store from '../store';
 
-const router = new VueRouter({
-  routes
-})
+const requireAuthenticated = (to, from, next) => {
+  store.dispatch('auth/initialize').then(() => {
+    if (!store.getters['auth/isAuthenticated']) {
+      next('/signin');
+    } else {
+      next();
+    }
+  });
+};
 
-export default router
+const requireUnauthenticated = (to, from, next) => {
+  store.dispatch('auth/initialize')
+    .then(() => {
+      if (store.getters['auth/isAuthenticated']) {
+        next('/');
+      }
+      else{
+        next();
+      }
+    });
+};
+
+const redirectSignOut = (to, from, next) => {
+  store.dispatch('auth/signout')
+  .then(() => next('/signin'));
+};
+
+Vue.use(Router)
+
+export default new Router({
+    saveScrollPosition: true,
+    routes: [
+      {
+        path: '/',
+        redirect: '/dashboard'
+      },
+      {
+        path: '/dashboard',
+        name: 'Dashboard',
+        component: Dashboard,
+        beforeEnter: requireAuthenticated
+      },
+      {
+        path: '/signin',
+        name: 'SignIn',
+        component: SignIn,
+        beforeEnter: requireUnauthenticated
+      },
+      {
+        path: '/forgotpassword',
+        name: 'ForgotPassword',
+        component: ForgotPassword,
+        beforeEnter: requireUnauthenticated,
+      },
+      {
+        path: '/signout',
+        beforeEnter: redirectSignOut,
+      },
+      {
+        path: '/clientlist',
+        name: 'ClientList',
+        component: ClientList,
+        beforeEnter: requireAuthenticated
+      },
+      {
+        path: '/userdetails/:id',
+        name: 'UserDetails',
+        component: UserDetails,
+        beforeEnter: requireAuthenticated
+      },
+      {
+        path: '/companylist',
+        name: 'CompanyList',
+        component: CompanyList,
+        beforeEnter: requireAuthenticated
+      },
+      {
+        path: '/companydetails/:id',
+        name: 'CompanyDetails',
+        component: CompanyDetails,
+        beforeEnter: requireAuthenticated
+      },
+      {
+        path: '/hearinglist',
+        name: 'HearingList',
+        component: HearingList,
+        beforeEnter: requireAuthenticated
+      },
+      {
+        path: '/questionaries',
+        name: 'Questionaries',
+        component: Questionaries,
+        beforeEnter: requireAuthenticated
+      },
+      {
+        path: '*',
+        component: Lost
+      },
+    ]
+  })

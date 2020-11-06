@@ -1,0 +1,127 @@
+<template>
+  <v-card tile>
+    <v-toolbar short color="primary" dark >
+      <v-app-bar-nav-icon color="white" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+      
+      <v-spacer></v-spacer>
+
+      <v-btn @click="sair" icon>
+        <v-icon color="white">fa fa-sign-out-alt</v-icon>
+      </v-btn>
+    </v-toolbar>
+
+    <v-navigation-drawer temporary class="mt-14" fixed v-model="drawer">
+      <v-list nav>
+        <v-list-item link @click="dashboard">
+          <v-list-item-icon>
+            <v-icon>fa fa-chart-line</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title>Dashboard</v-list-item-title>
+        </v-list-item>
+        <v-list-item link @click="client_list">
+          <v-list-item-icon>
+            <v-icon>fa fa-users</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title>Lista de Clientes</v-list-item-title>
+        </v-list-item>
+        <v-list-item link>
+          <v-list-item-icon>
+            <v-icon>fa fa-gavel</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title>Lista de Prepostos</v-list-item-title>
+        </v-list-item>
+        <v-list-item link @click="company_list">
+          <v-list-item-icon>
+            <v-icon>fa fa-building</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title>Lista de Empresas</v-list-item-title>
+        </v-list-item>
+        <v-list-item link @click="hearing_list">
+          <v-list-item-icon>
+            <v-icon>fa fa-balance-scale</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title>Lista de Audiências</v-list-item-title>
+        </v-list-item>
+        <v-list-item link>
+          <v-list-item-icon>
+            <v-icon>fa fa-handshake</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title>Termos</v-list-item-title>
+        </v-list-item>
+        <v-list-item link @click="questionnaires">
+          <v-list-item-icon>
+            <v-icon>fa fa-question</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title>Questionários</v-list-item-title>
+        </v-list-item>
+        <v-menu offset-x open-on-hover>
+          <template v-slot:activator="{ on, attrs }">
+            <v-list-item link v-bind="attrs" v-on="on">
+              <v-list-item-icon>
+                <v-icon>fa fa-map-marker-alt</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>Locais de audiências</v-list-item-title>
+            </v-list-item>
+          </template>
+          <v-card>
+            <v-list>
+              <v-list-item link>
+                <v-list-item-title>Esferas</v-list-item-title>
+              </v-list-item>
+              <v-list-item link>
+                <v-list-item-title>Tribunais</v-list-item-title>
+              </v-list-item>
+              <v-list-item link>
+                <v-list-item-title>Comcarcas</v-list-item-title>
+              </v-list-item>
+              <v-list-item link>
+                <v-list-item-title>Foros</v-list-item-title>
+              </v-list-item>
+              <v-list-item link>
+                <v-list-item-title>Varas</v-list-item-title>
+              </v-list-item>
+            </v-list>
+          </v-card>
+        </v-menu>
+      </v-list>
+    </v-navigation-drawer>
+  </v-card>
+</template>
+
+<script>
+export default {
+  data: () => ({
+    drawer: false
+  }),
+  methods: {
+    dashboard(){
+      if (this.$router.currentRoute.name != "Dashboard") {
+        this.$router.push({ name: "Dashboard" });
+      }
+    },
+    questionnaires(){
+      if (this.$router.currentRoute.name != "Questionaries") {
+        this.$router.push({ name: "Questionaries" });
+      }
+    },
+    client_list(){
+      if (this.$router.currentRoute.name != "ClientList") {
+        this.$router.push({ name: "ClientList" });
+      }
+    },
+    company_list(){
+      if (this.$router.currentRoute.name != "CompanyList") {
+        this.$router.push({ name: "CompanyList" });
+      }
+    },
+    hearing_list(){
+      if (this.$router.currentRoute.name != "HearingList") {
+        this.$router.push({ name: "HearingList" });
+      }
+    },
+    sair() {
+      this.$router.push({ path: "/signout" });
+    }
+  },
+};
+</script>

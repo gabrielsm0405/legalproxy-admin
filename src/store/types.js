@@ -1,0 +1,10 @@
+export const SIGNIN_BEGIN = 'SIGNIN_BEGIN';
+export const SIGNIN_CLEAR = 'SIGNIN_CLEAR';
+export const SIGNIN_FAILURE = 'SIGNIN_FAILURE';
+export const SIGNIN_SUCCESS = 'SIGNIN_SUCCESS';
+export const SIGNOUT = 'SIGNOUT';
+export const SET_TOKEN = 'SET_TOKEN';
+export const REMOVE_TOKEN = 'REMOVE_TOKEN';
+export const LOADING_ADDRESS = 'LOADING_ADDRESS';
+export const ADDRESS_ERROR = 'ADDRESS_ERROR';
+export const GET_ADDRESS = 'GET_ADDRESS';
