@@ -158,11 +158,14 @@ export default {
         else if(this.type == 'hearing'){
             this.headers = [
                 { text: 'ID', value: 'id', sortable: false },
+                { text: 'Tipo', value: 'type', sortable: false },
+                { text: 'Empresa', value: 'company', sortable: false },
                 { text: 'Esfera', value: 'esfera', sortable: false },
                 { text: 'Tribunal', value: 'tribunal', sortable: false },
                 { text: 'Comarca', value: 'comarca', sortable: false },
                 { text: 'Foro', value: 'foro', sortable: false },
                 { text: 'Vara', value: 'vara', sortable: false },
+                { text: 'Online', value: 'online', sortable: false },
                 { text: 'Data', value: 'date' },
                 { text: 'Status', value: 'status', sortable: false },
                 { text: '', value: 'actions', sortable: false }
@@ -171,31 +174,40 @@ export default {
             this.items = [
                 {
                     id: 1,
+                    type: 'Conciliação',
+                    company: 'AMD',
                     esfera: 'Cível',
                     tribunal: 'TJSP',
                     comarca: 'São Paulo',
                     foro: 'Default',
                     vara: '1 VARA DO JUIZADO ESPECIAL CÍVEL CENTRAL',
+                    online: true,
                     date: '30/11/2020',
                     status: 0
                 },
                 {
                     id: 2,
+                    type: 'Conciliação',
+                    company: 'Ifood',
                     esfera: 'Cível',
                     tribunal: 'TJSP',
                     comarca: 'São Paulo',
                     foro: 'Default',
                     vara: '1 VARA DO JUIZADO ESPECIAL CÍVEL CENTRAL',
+                    online: false,
                     date: '21/10/2020',
                     status: 5
                 },
                 {
                     id: 3,
+                    type: 'Conciliação',
+                    company: 'Intel',
                     esfera: 'Cível',
                     tribunal: 'TJSP',
                     comarca: 'São Paulo',
                     foro: 'Default',
                     vara: '1 VARA DO JUIZADO ESPECIAL CÍVEL CENTRAL',
+                    online: false,
                     date: '02/10/2020',
                     status: 5
                 }

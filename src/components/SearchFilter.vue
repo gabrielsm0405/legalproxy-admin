@@ -10,7 +10,13 @@
                     required
                 ></v-text-field>
             </v-col>
-            <v-col cols="6" v-if="type == 'hearing'">
+            <v-col cols="4" v-if="type == 'hearing'">
+                <v-select
+                    label="Tipo de audiência"
+                    outlined
+                ></v-select>
+            </v-col>
+            <v-col v-if="type == 'hearing'">
                 <v-select
                     label="Esfera"
                     outlined
@@ -46,7 +52,13 @@
                     required
                 ></v-text-field>
             </v-col>
-            <v-col cols="6" v-if="type == 'hearing'">
+            <v-col cols="4" v-if="type == 'hearing'">
+                <v-text-field
+                    label="Empresa"
+                    outlined
+                ></v-text-field>
+            </v-col>
+            <v-col v-if="type == 'hearing'">
                 <v-select
                     label="Comarca"
                     outlined
@@ -74,17 +86,30 @@
                     <v-checkbox label="Ponto Focal"></v-checkbox>
                 </v-row>
             </v-col>
-            <v-col cols="6" v-if="type == 'hearing'" class="pl-8">
+            <v-col cols="4" v-if="type == 'hearing'" class="pl-8">
                 <v-select
                     label="Vara"
                     outlined
                 ></v-select>
             </v-col>
-            <v-col cols="6" v-if="type == 'hearing'" class="pr-8">
+            <v-col cols="4" v-if="type == 'hearing'" class="pr-8">
                 <v-text-field
                     label="Status"
                     outlined
                 ></v-text-field>
+            </v-col>
+            <v-col cols="4" v-if="type == 'hearing'" class="pr-8">
+                <DatePicker 
+                    :type="'day month year'" 
+                    label="Data da Audiência"
+                ></DatePicker>
+                <!--v-on:change_date="change_date"-->
+            </v-col>
+            <v-col v-if="type == 'hearing'" class="pl-8">
+                <v-row justify="center">
+                    <v-checkbox label="Online" class="mr-2"></v-checkbox>
+                    <v-checkbox label="Presencial" class="mr-2"></v-checkbox>
+                </v-row>
             </v-col>
             <v-col>
                 <v-row justify="center">
@@ -99,9 +124,14 @@
 </template>
 
 <script>
+import DatePicker from '../components/DatePicker'
+
 export default {
     props: {
         type: String
+    },
+    components: {
+        DatePicker
     }
 }
 </script>

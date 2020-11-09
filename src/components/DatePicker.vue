@@ -18,7 +18,6 @@
                     v-bind="attrs"
                     v-on="on"
                     outlined
-                    :rules="non_empty_rule"
                 ></v-text-field>
             </template>
             <v-date-picker locale="PT" v-model="date" no-title scrollable>
@@ -49,7 +48,6 @@
                     v-on="on"
                     outlined
                     :disabled="disabled"
-                    :rules="non_empty_rule"
                 ></v-text-field>
             </template>
             <v-date-picker
