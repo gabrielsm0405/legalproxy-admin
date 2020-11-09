@@ -18,7 +18,7 @@
         <!-- Box de confirmação de desativação de usuário -->
         <v-dialog v-model="open_confirm_desativation_dialog" max-width="500">
             <ConfirmBox
-                title="Desativar usuário?"
+                title="Desativar empresa?"
                 v-if="open_confirm_desativation_dialog"
                 v-on:cancel="open_confirm_desativation_dialog = false"
             ></ConfirmBox>
@@ -28,7 +28,7 @@
         <!-- Box de confirmação de exlusão de usuário -->
         <v-dialog v-model="open_confirm_delete_dialog" max-width="500">
             <ConfirmBox
-                title="Excluir usuário?"
+                title="Excluir empresa?"
                 v-if="open_confirm_delete_dialog"
                 v-on:cancel="open_confirm_delete_dialog = false"
             ></ConfirmBox>
@@ -80,6 +80,7 @@
 </template>
 
 <script>
+import ConfirmBox from '../components/ConfirmBox'
 import CompanyForm from '../components/CompanyForm'
 import Table from '../components/Table'
 
@@ -103,7 +104,8 @@ export default {
     }),
     components: {
         CompanyForm,
-        Table
+        Table,
+        ConfirmBox
     }
 }
 </script>
