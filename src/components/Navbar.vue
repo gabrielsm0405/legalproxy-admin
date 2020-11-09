@@ -24,7 +24,7 @@
           </v-list-item-icon>
           <v-list-item-title>Lista de Clientes</v-list-item-title>
         </v-list-item>
-        <v-list-item link>
+        <v-list-item link @click="proxy_list">
           <v-list-item-icon>
             <v-icon>fa fa-gavel</v-icon>
           </v-list-item-icon>
@@ -117,6 +117,11 @@ export default {
     hearing_list(){
       if (this.$router.currentRoute.name != "HearingList") {
         this.$router.push({ name: "HearingList" });
+      }
+    },
+    proxy_list(){
+      if (this.$router.currentRoute.name != "ProxyList") {
+        this.$router.push({ name: "ProxyList" });
       }
     },
     sair() {

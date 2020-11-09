@@ -42,10 +42,16 @@
                     outlined
                 ></v-select>
             </v-col>
+            <v-col v-if="type == 'proxy'">
+                <v-select
+                    label="Esferas"
+                    outlined
+                ></v-select>
+            </v-col>
         </v-row>
 
         <v-row class="mr-2 ml-2">
-            <v-col cols="6" v-if="type == 'user'">
+            <v-col cols="6" v-if="type == 'user' || type == 'proxy'">
                 <v-text-field
                     label="Email"
                     outlined
@@ -64,7 +70,7 @@
                     outlined
                 ></v-select>
             </v-col>
-            <v-col v-if="type == 'user'">
+            <v-col v-if="type == 'user' || type == 'proxy'">
                 <v-text-field
                     label="CPF"
                     outlined

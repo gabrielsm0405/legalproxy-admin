@@ -46,6 +46,9 @@
                 <v-icon small class="mr-2" @click="go_to_item(item)" v-if="type=='hearing'">
                     fas fa-balance-scale
                 </v-icon>
+                <v-icon small class="mr-2" @click="go_to_item(item)" v-if="type=='proxy'">
+                    fas fa-gavel
+                </v-icon>
             </template>
         </v-data-table>
 
@@ -210,6 +213,44 @@ export default {
                     online: false,
                     date: '02/10/2020',
                     status: 5
+                }
+            ]
+        }
+        else if(this.type == 'proxy'){
+            this.headers = [
+                { text: 'ID', value: 'id', sortable: false },
+                { text: 'Nome', value: 'name', sortable: false },
+                { text: 'CPF', value: 'cpf', sortable: false },
+                { text: 'Email', value: 'email', sortable: false },
+                { text: 'Quantidade de audiências', value: 'qtd_hearings' },
+                { text: 'Nota', value: 'grade' },
+                { text: '', value: 'actions', sortable: false }
+            ]
+
+            this.items = [
+                {
+                    id: 1,
+                    name: 'Gabriel Souza Marques',
+                    cpf: '061.590.555-26',
+                    email: 'gsm3@cin.ufpe.br',
+                    qtd_hearings: 10,
+                    grade: 8.8
+                },
+                {
+                    id: 2,
+                    name: 'Allan Rivales',
+                    cpf: '999.999.999-99',
+                    email: 'allan@email.com',
+                    qtd_hearings: 15,
+                    grade: 9.0
+                },
+                {
+                    id: 3,
+                    name: 'Felipe Garcia',
+                    cpf: '888.888.888-88',
+                    email: 'felipe@email.com',
+                    qtd_hearings: 20,
+                    grade: 9.0
                 }
             ]
         }

@@ -10,6 +10,7 @@ import CompanyList from "@/views/CompanyList"
 import CompanyDetails from "@/views/CompanyDetails"
 import HearingList from "@/views/HearingList"
 import HearingDetails from "@/views/HearingDetails"
+import ProxyList from "@/views/ProxyList"
 import Questionaries from "@/views/Questionaries"
 import Lost from '@/views/Lost'
 
@@ -107,6 +108,12 @@ export default new Router({
         path: '/hearingdetails',
         name: 'HearingDetails',
         component: HearingDetails,
+        beforeEnter: requireAuthenticated
+      },
+      {
+        path: '/proxylist',
+        name: 'ProxyList',
+        component: ProxyList,
         beforeEnter: requireAuthenticated
       },
       {
