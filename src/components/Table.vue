@@ -163,7 +163,7 @@ export default {
                 { text: 'Comarca', value: 'comarca', sortable: false },
                 { text: 'Foro', value: 'foro', sortable: false },
                 { text: 'Vara', value: 'vara', sortable: false },
-                { text: 'Data', value: 'date', sortable: false },
+                { text: 'Data', value: 'date' },
                 { text: 'Status', value: 'status', sortable: false },
                 { text: '', value: 'actions', sortable: false }
             ]
@@ -178,6 +178,26 @@ export default {
                     vara: '1 VARA DO JUIZADO ESPECIAL CÍVEL CENTRAL',
                     date: '30/11/2020',
                     status: 0
+                },
+                {
+                    id: 2,
+                    esfera: 'Cível',
+                    tribunal: 'TJSP',
+                    comarca: 'São Paulo',
+                    foro: 'Default',
+                    vara: '1 VARA DO JUIZADO ESPECIAL CÍVEL CENTRAL',
+                    date: '21/10/2020',
+                    status: 5
+                },
+                {
+                    id: 3,
+                    esfera: 'Cível',
+                    tribunal: 'TJSP',
+                    comarca: 'São Paulo',
+                    foro: 'Default',
+                    vara: '1 VARA DO JUIZADO ESPECIAL CÍVEL CENTRAL',
+                    date: '02/10/2020',
+                    status: 5
                 }
             ]
         }
