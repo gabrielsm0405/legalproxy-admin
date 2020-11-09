@@ -210,6 +210,9 @@ export default {
             else if(this.type=='company'){
                 this.$router.push({ name: 'CompanyDetails', params:{id: item.id} })
             }
+            else if(this.type=='hearing'){
+                this.$router.push({ name: 'HearingDetails', params:{id: item.id} })
+            }
         }
     }
 }

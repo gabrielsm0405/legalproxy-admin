@@ -9,6 +9,7 @@ import UserDetails from "@/views/UserDetails"
 import CompanyList from "@/views/CompanyList"
 import CompanyDetails from "@/views/CompanyDetails"
 import HearingList from "@/views/HearingList"
+import HearingDetails from "@/views/HearingDetails"
 import Questionaries from "@/views/Questionaries"
 import Lost from '@/views/Lost'
 
@@ -100,6 +101,12 @@ export default new Router({
         path: '/hearinglist',
         name: 'HearingList',
         component: HearingList,
+        beforeEnter: requireAuthenticated
+      },
+      {
+        path: '/hearingdetails',
+        name: 'HearingDetails',
+        component: HearingDetails,
         beforeEnter: requireAuthenticated
       },
       {

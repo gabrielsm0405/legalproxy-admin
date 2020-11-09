@@ -4,6 +4,8 @@ import createLogger from 'vuex/dist/logger'
 
 import auth from './auth'
 import address from './address'
+import hearings from './hearings'
+import companies from './companies'
 
 const debug = process.env.NODE_ENV !== 'production';
 
@@ -12,7 +14,9 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     modules: {
         auth,
-        address
+        address,
+        hearings,
+        companies
     },
     strict: debug,
     plugins: debug ? [createLogger()] : []
