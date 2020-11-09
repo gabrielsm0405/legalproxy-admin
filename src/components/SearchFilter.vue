@@ -80,6 +80,12 @@
                     outlined
                 ></v-select>
             </v-col>
+            <v-col cols="6" v-if="type == 'hearing'" class="pr-8">
+                <v-text-field
+                    label="Status"
+                    outlined
+                ></v-text-field>
+            </v-col>
             <v-col>
                 <v-row justify="center">
                     <v-btn color="primary">
