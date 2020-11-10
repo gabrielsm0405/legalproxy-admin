@@ -266,6 +266,9 @@ export default {
             else if(this.type=='hearing'){
                 this.$router.push({ name: 'HearingDetails', params:{id: item.id} })
             }
+            else if(this.type=='proxy'){
+                this.$router.push({ name: 'ProxyDetails', params:{id: item.id} })
+            }
         }
     }
 }

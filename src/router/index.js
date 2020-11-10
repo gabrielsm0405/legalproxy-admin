@@ -11,6 +11,7 @@ import CompanyDetails from "@/views/CompanyDetails"
 import HearingList from "@/views/HearingList"
 import HearingDetails from "@/views/HearingDetails"
 import ProxyList from "@/views/ProxyList"
+import ProxyDetails from "@/views/ProxyDetails"
 import Questionaries from "@/views/Questionaries"
 import Lost from '@/views/Lost'
 
@@ -114,6 +115,12 @@ export default new Router({
         path: '/proxylist',
         name: 'ProxyList',
         component: ProxyList,
+        beforeEnter: requireAuthenticated
+      },
+      {
+        path: '/proxydetails',
+        name: 'ProxyDetails',
+        component: ProxyDetails,
         beforeEnter: requireAuthenticated
       },
       {

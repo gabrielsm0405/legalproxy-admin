@@ -162,6 +162,23 @@
                 ></v-text-field>
             </v-col>
         </v-row>
+
+        <v-row>
+            <v-col sm="6" cols="12">
+                <v-text-field
+                    v-model="form_data.linkedin"
+                    label="Linkedin"
+                    outlined
+                ></v-text-field>
+            </v-col>
+            <v-col>
+                <v-text-field
+                    v-model="form_data.foros_attended"
+                    label="Foros"
+                    outlined
+                ></v-text-field>
+            </v-col>
+        </v-row>
     </v-form>
 </template>
 
@@ -186,7 +203,9 @@ import { mapActions, mapState } from "vuex"
                 state: '',
                 birth_date: '',
                 is_whatsapp: false,
-                gender: ''
+                gender: '',
+                linkedin: '',
+                foros_attended: ''
             },
             dateFormatted: '',
             password: '',
