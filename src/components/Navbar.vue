@@ -42,7 +42,7 @@
           </v-list-item-icon>
           <v-list-item-title>Lista de Audiências</v-list-item-title>
         </v-list-item>
-        <v-list-item link>
+        <v-list-item link @click="terms">
           <v-list-item-icon>
             <v-icon>fa fa-handshake</v-icon>
           </v-list-item-icon>
@@ -122,6 +122,11 @@ export default {
     proxy_list(){
       if (this.$router.currentRoute.name != "ProxyList") {
         this.$router.push({ name: "ProxyList" });
+      }
+    },
+    terms(){
+      if (this.$router.currentRoute.name != "Terms") {
+        this.$router.push({ name: "Terms" });
       }
     },
     sair() {
