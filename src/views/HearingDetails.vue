@@ -70,7 +70,13 @@
                     </v-btn>
                 </v-row>
                 <v-row justify="center">
-                    <v-btn x-large color="primary">Preposto</v-btn>
+                    <v-btn 
+                        x-large 
+                        color="primary"
+                        @click="$router.push({ name: 'ProxyDetails', params:{id: 1} })"
+                    >
+                        Preposto
+                    </v-btn>
                 </v-row>
             </v-col>
         </v-row>
