@@ -14,7 +14,7 @@
                     <TermList :terms="user_terms" title="Termos do cliente"></TermList>
                 </v-col>
                 <v-col cols="6">
-                    <TermList :terms="user_terms" title="Termos do preposto"></TermList>
+                    <TermList :terms="proxy_terms" title="Termos do preposto"></TermList>
                 </v-col>
             </v-row>
         </v-card>
