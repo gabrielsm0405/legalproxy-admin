@@ -31,7 +31,7 @@
                                 </v-list-item>
                             </v-card>
                             <v-btn icon @click="edit_term=term, open_edit_term_box=true">
-                                <v-icon>fas fa-arrow-right</v-icon>
+                                <v-icon>fas fa-edit</v-icon>
                             </v-btn>
                         </v-row>
                         <v-divider></v-divider>
