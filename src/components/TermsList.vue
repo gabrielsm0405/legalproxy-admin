@@ -15,7 +15,7 @@
             <v-list-item-group v-model="selected">
                 <template v-for="(term, i) in terms">
                     <div :key="i">
-                        <v-row align="center">
+                        <v-row align="center" class="mr-1">
                             <v-card class="mb-2 pa-2" width="90%" flat>
                                 <v-list-item>
                                     <v-list-item-content>
@@ -32,6 +32,9 @@
                             </v-card>
                             <v-btn icon @click="edit_term=term, open_edit_term_box=true">
                                 <v-icon>fas fa-edit</v-icon>
+                            </v-btn>
+                            <v-btn icon @click="edit_term=term, open_confirm_delete_dialog=true">
+                                <v-icon>fas fa-trash-alt</v-icon>
                             </v-btn>
                         </v-row>
                         <v-divider></v-divider>
@@ -66,25 +69,38 @@
                 :term="edit_term"
             ></TermForm>
         </v-dialog>
+
+        <!-- Box de confirmação de exclusão do termo -->
+        <v-dialog v-model="open_confirm_delete_dialog" max-width="500">
+            <ConfirmBox
+                :title="'Excluir '+edit_term.name+'?'"
+                v-if="open_confirm_delete_dialog"
+                v-on:cancel="open_confirm_delete_dialog = false"
+            ></ConfirmBox>
+            <!--v-on:yes="erase_company"-->
+        </v-dialog>
     </v-card>
 </template>
 
 <script>
 import TermForm from './TermForm'
+import ConfirmBox from './ConfirmBox'
 
 export default {
     data: () => ({
         selected: [],
         open_create_term_box: false,
         open_edit_term_box: false,
-        edit_term: {}
+        edit_term: {},
+        open_confirm_delete_dialog: false
     }),
     props: {
         terms: Array,
         title: String
     },
     components: {
-        TermForm
+        TermForm,
+        ConfirmBox
     },
     watch: {
         selected(){
