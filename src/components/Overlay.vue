@@ -1,5 +1,5 @@
 <template>
-    <v-overlay :value="authenticating">
+    <v-overlay :value="authenticating || loading_questionaries_request">
         <v-progress-circular indeterminate size="64"></v-progress-circular>
     </v-overlay>
 </template>
@@ -9,7 +9,8 @@ import { mapState } from 'vuex'
 
 export default {
     computed: {
-        ...mapState('auth', ['authenticating'])
+        ...mapState('auth', ['authenticating']),
+        ...mapState('questionaries', ['loading_questionaries_request'])
     }
 }
 </script>

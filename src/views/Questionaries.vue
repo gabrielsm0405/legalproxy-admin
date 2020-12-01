@@ -9,13 +9,13 @@
                 <v-divider></v-divider>
             </v-col>
 
-            <v-row v-if="questionnaires.length == 0" justify="center">
+            <v-row v-if="questionaries.length == 0" justify="center">
                 <h2 style="color: gray">Você ainda não possui questionários</h2>
             </v-row>
 
             <v-col lg="8" sm="12">
                 <v-list three-line>
-                    <template v-for="(questionary, i) in questionnaires">
+                    <template v-for="(questionary, i) in questionaries">
                         <v-card class="mb-2" width="100%" outlined elevation="2" :key="i">
                             <v-list-item>
                                 <v-list-item-content>
@@ -24,15 +24,15 @@
                                     </v-list-item-title>
 
                                     <v-list-item-subtitle>
-                                        <v-row class="ml-0"> Tipo: {{ questionary.type }} </v-row>
-                                        <v-row class="ml-0"> {{questionary.questions.length}} perguntas</v-row>
+                                        <v-row class="ml-0"> Tipo: {{ questionary.mandatory==true?'Obrigatório':'Facultativo' }} </v-row>
+                                        <v-row class="ml-0"> {{JSON.parse(questionary.questions).length}} perguntas</v-row>
                                     </v-list-item-subtitle>
                                 </v-list-item-content>
                                 <v-list-item-action>
                                     <v-btn
                                         align="end"
                                         icon
-                                        @click="open_edit_questionary_dialog=true, edit_questionary_data=JSON.parse(JSON.stringify(questionary))"
+                                        @click="edit_questionary(questionary)"
                                     >
                                         <v-icon medium color="primary">fa fa-edit</v-icon>
                                     </v-btn>
@@ -67,6 +67,7 @@
                     v-on:close="open_new_questionary_dialog = false"
                     title="Criar Questionário"
                     :questionary="edit_questionary_data"
+                    v-on:new_questionary="new_questionary($event), open_new_questionary_dialog=false"
                 ></QuestionaryForm>
             </v-dialog>
 
@@ -91,7 +92,7 @@
                         right
                         fixed
                         color="primary"
-                        @click="edit_questionary_data={name:'', type:'Obrigatório', questions:[]}, open_new_questionary_dialog = true"
+                        @click="edit_questionary_data={name:'', mandatory: true, questions:'[]'}, open_new_questionary_dialog = true"
                         v-bind="attrs"
                         v-on="on"
                     >
@@ -105,42 +106,13 @@
 </template>
 
 <script>
+import { mapActions, mapState } from "vuex";
 import QuestionaryForm from "../components/QuestionaryForm"
 import ConfirmBox from "../components/ConfirmBox"
+import lodash from "lodash"
 
 export default {
     data: () => ({
-        questionnaires: [
-            {
-                name: "Questionário 1",
-                type: "Obrigatório",
-                link: "https://www.youtube.com/",
-                text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-                questions: [
-                    {
-                        id: 1,
-                        statement: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book",
-                        alternatives: [
-                            {
-                                id: 1,
-                                content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-                                right_answer: false
-                            },
-                            {
-                                id: 2,
-                                content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-                                right_answer: true
-                            },
-                            {
-                                id: 3,
-                                content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-                                right_answer: true
-                            }
-                        ]
-                    }
-                ]
-            }
-        ],
         open_edit_questionary_dialog: false,
         edit_questionary_data: {},
         open_new_questionary_dialog: false,
@@ -150,6 +122,25 @@ export default {
     components: {
         QuestionaryForm,
         ConfirmBox
+    },
+    computed: {
+        ...mapState('questionaries', ['questionaries', 'questionary_added']),
+    },
+    methods: {
+        ...mapActions("questionaries", ["get_questionaries", "new_questionary"]),
+        edit_questionary(questionary){
+            this.edit_questionary_data = lodash.cloneDeep(questionary)
+            
+            this.open_edit_questionary_dialog=true
+        }
+    },
+    watch: {
+        questionary_added(){
+            this.get_questionaries()
+        }
+    },
+    mounted(){
+        this.get_questionaries()
     }
 }
 </script>

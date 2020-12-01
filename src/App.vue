@@ -1,5 +1,7 @@
 <template>
   <v-app>
+    <Alert></Alert>
+
     <Navbar v-if="isAuthenticated"></Navbar>
 
     <Overlay></Overlay>
@@ -12,12 +14,14 @@
 import { mapGetters } from "vuex";
 import Navbar from "./components/Navbar";
 import Overlay from "./components/Overlay";
+import Alert from "./components/Alert";
 
 export default {
   name: 'App',
   components: {
     Navbar,
-    Overlay
+    Overlay,
+    Alert
   },
   computed: {
     ...mapGetters("auth", ["isAuthenticated"]),

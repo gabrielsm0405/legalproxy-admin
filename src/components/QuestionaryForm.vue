@@ -17,7 +17,7 @@
                         ></v-text-field>
                     </v-col>
                     <v-col>
-                        <v-radio-group v-model="questionary.type" row>
+                        <v-radio-group v-model="questionary_type" row>
                             <v-radio value="Obrigatório">
                                 <template v-slot:label>
                                     <small>Obrigatório</small>
@@ -35,7 +35,7 @@
 
                 <v-row class="ml-1 mr-1">
                     <v-text-field
-                        v-model="questionary.link"
+                        v-model="questionary.video"
                         label="Link para o video"
                         outlined
                     ></v-text-field>
@@ -79,7 +79,7 @@
                                                 <v-spacer></v-spacer>
                                                 <v-btn 
                                                     color="primary" 
-                                                    @click="question.alternatives.push({id: 1+Math.max.apply(Math, question.alternatives.map(function(o) { return o.id; })), content: '', right_answer: false})"
+                                                    @click="question.alternatives.push({id: 1+(question.alternatives.length>0 ? Math.max.apply(Math, question.alternatives.map(function(o) { return o.id; })) : 0), content: '', right_answer: false})"
                                                 >
                                                     Add Alternativa
                                                 </v-btn>
@@ -167,7 +167,10 @@
 
         <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="primary">Salvar</v-btn>
+            <v-btn 
+                color="primary" 
+                @click="questionary.mandatory = questionary_type=='Obrigatório', questionary.questions = JSON.stringify(questionary.questions), $emit('new_questionary', questionary)"
+            >Salvar</v-btn>
             <v-btn color="red white--text" @click="$emit('close')">Cancelar</v-btn>
         </v-card-actions>
     </v-card>
@@ -186,7 +189,8 @@ export default {
         delete_question_data: {},
         delete_alternative_data: {},
         delete_alternative_number: null,
-        open_delete_alternative_dialog: false
+        open_delete_alternative_dialog: false,
+        questionary_type: 'Obrigatório'
     }),
     props: {
         title: String,
@@ -195,6 +199,9 @@ export default {
     components: {
         CloseButton,
         ConfirmBox
+    },
+    mounted(){
+        this.questionary.questions = JSON.parse(this.questionary.questions)
     },
     methods: {
         delete_alternative(){
