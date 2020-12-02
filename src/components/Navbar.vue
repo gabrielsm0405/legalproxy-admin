@@ -54,35 +54,12 @@
           </v-list-item-icon>
           <v-list-item-title>Questionários</v-list-item-title>
         </v-list-item>
-        <v-menu offset-x open-on-hover>
-          <template v-slot:activator="{ on, attrs }">
-            <v-list-item link v-bind="attrs" v-on="on">
-              <v-list-item-icon>
-                <v-icon>fa fa-map-marker-alt</v-icon>
-              </v-list-item-icon>
-              <v-list-item-title>Locais de audiências</v-list-item-title>
-            </v-list-item>
-          </template>
-          <v-card>
-            <v-list>
-              <v-list-item link>
-                <v-list-item-title>Esferas</v-list-item-title>
-              </v-list-item>
-              <v-list-item link>
-                <v-list-item-title>Tribunais</v-list-item-title>
-              </v-list-item>
-              <v-list-item link>
-                <v-list-item-title>Comcarcas</v-list-item-title>
-              </v-list-item>
-              <v-list-item link>
-                <v-list-item-title>Foros</v-list-item-title>
-              </v-list-item>
-              <v-list-item link>
-                <v-list-item-title>Varas</v-list-item-title>
-              </v-list-item>
-            </v-list>
-          </v-card>
-        </v-menu>
+        <v-list-item link @click="hearings_locations">
+          <v-list-item-icon>
+            <v-icon>fa fa-map-marker-alt</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title>Locais de audiências</v-list-item-title>
+        </v-list-item>
       </v-list>
     </v-navigation-drawer>
   </v-card>
@@ -127,6 +104,11 @@ export default {
     terms(){
       if (this.$router.currentRoute.name != "Terms") {
         this.$router.push({ name: "Terms" });
+      }
+    },
+    hearings_locations(){
+      if (this.$router.currentRoute.name != "HearingsLocations") {
+        this.$router.push({ name: "HearingsLocations" });
       }
     },
     sair() {

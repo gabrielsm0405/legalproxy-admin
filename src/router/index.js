@@ -14,6 +14,7 @@ import ProxyList from "@/views/ProxyList"
 import ProxyDetails from "@/views/ProxyDetails"
 import Terms from "@/views/Terms"
 import Questionaries from "@/views/Questionaries"
+import HearingsLocations from "@/views/HearingsLocations"
 import Lost from '@/views/Lost'
 
 import store from '../store';
@@ -134,6 +135,12 @@ export default new Router({
         path: '/questionaries',
         name: 'Questionaries',
         component: Questionaries,
+        beforeEnter: requireAuthenticated
+      },
+      {
+        path: '/hearingslocations',
+        name: 'HearingsLocations',
+        component: HearingsLocations,
         beforeEnter: requireAuthenticated
       },
       {

@@ -49,6 +49,14 @@
                 <v-icon small class="mr-2" @click="go_to_item(item)" v-if="type=='proxy'">
                     fas fa-gavel
                 </v-icon>
+                <v-icon 
+                    small 
+                    class="mr-2" 
+                    @click="go_to_item(item)" 
+                    v-if="type=='esferas'||type=='tribunais'||type=='comarcas'||type=='foros'||type=='varas'"
+                >
+                    fas fa-edit
+                </v-icon>
             </template>
         </v-data-table>
 
@@ -252,6 +260,117 @@ export default {
                     qtd_hearings: 20,
                     grade: 9.0
                 }
+            ]
+        }
+        else if(this.type == 'esferas'){
+            this.headers = [
+                { text: 'ID', value: 'id', sortable: false },
+                { text: 'Nome', value: 'name', sortable: false },
+                { text: 'Ativa', value: 'activate', sortable: false },
+                { text: '', value: 'actions', sortable: false }
+            ]
+
+            this.items = [
+                {
+                    id: 1,
+                    name: 'Trabalhista',
+                    activate: true
+                },
+                {
+                    id: 2,
+                    name: 'Cível',
+                    activate: true
+                },
+            ]
+        }
+        else if(this.type == 'tribunais'){
+            this.headers = [
+                { text: 'ID', value: 'id', sortable: false },
+                { text: 'Nome', value: 'name', sortable: false },
+                { text: 'Esfera', value: 'sphere', sortable: false },
+                { text: 'Ativa', value: 'activate', sortable: false },
+                { text: '', value: 'actions', sortable: false }
+            ]
+
+            this.items = [
+                {
+                    id: 1,
+                    name: 'TRT15',
+                    sphere: 'Trabalhista',
+                    activate: true
+                },
+                {
+                    id: 2,
+                    name: 'TRT2',
+                    sphere: 'Trabalhista',
+                    activate: true
+                },
+                {
+                    id: 3,
+                    name: 'TJSP',
+                    sphere: 'Cível',
+                    activate: true
+                }
+            ]
+        }
+        else if(this.type == 'comarcas'){
+            this.headers = [
+                { text: 'ID', value: 'id', sortable: false },
+                { text: 'Nome', value: 'name', sortable: false },
+                { text: 'Tribunal', value: 'tribunal', sortable: false },
+                { text: 'Ativa', value: 'activate', sortable: false },
+                { text: '', value: 'actions', sortable: false }
+            ]
+
+            this.items = [
+                {
+                    id: 1,
+                    name: 'Barueri',
+                    tribunal: 'TRT2',
+                    activate: true
+                },
+                {
+                    id: 2,
+                    name: 'São Paulo',
+                    tribunal: 'TJSP',
+                    activate: true
+                }
+            ]
+        }
+        else if(this.type == 'foros'){
+            this.headers = [
+                { text: 'ID', value: 'id', sortable: false },
+                { text: 'Nome', value: 'name', sortable: false },
+                { text: 'Comarca', value: 'comarca', sortable: false },
+                { text: 'Ativa', value: 'activate', sortable: false },
+                { text: '', value: 'actions', sortable: false }
+            ]
+
+            this.items = [
+                {
+                    id: 1,
+                    name: 'Default',
+                    comarca: 'São Paulo',
+                    activate: true
+                },
+            ]
+        }
+        else if(this.type == 'varas'){
+            this.headers = [
+                { text: 'ID', value: 'id', sortable: false },
+                { text: 'Nome', value: 'name', sortable: false },
+                { text: 'Foro', value: 'foro', sortable: false },
+                { text: 'Ativa', value: 'activate', sortable: false },
+                { text: '', value: 'actions', sortable: false }
+            ]
+
+            this.items = [
+                {
+                    id: 1,
+                    name: '1 VARA DO JUIZADO ESPECIAL CÍVEL CENTRAL',
+                    foro: 'Default',
+                    activate: true
+                },
             ]
         }
     },
