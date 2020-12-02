@@ -7,6 +7,7 @@ import address from './address'
 import hearings from './hearings'
 import companies from './companies'
 import questionaries from './questionaries'
+import user_data from './user_data'
 
 const debug = process.env.NODE_ENV !== 'production';
 
@@ -18,7 +19,8 @@ export default new Vuex.Store({
         address,
         hearings,
         companies,
-        questionaries
+        questionaries,
+        user_data
     },
     strict: debug,
     plugins: debug ? [createLogger()] : []

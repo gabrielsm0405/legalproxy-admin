@@ -34,6 +34,7 @@ export default {
     }),
     computed: {
         ...mapState('questionaries', ['questionaries_request_error', 'questionaries_request_error_message', 'questionary_added']),
+        ...mapState('user_data', ['get_user_data_error', 'get_user_data_error_message']),
     },
     watch: {
         questionaries_request_error(){
@@ -49,7 +50,14 @@ export default {
                 this.message = 'O questionário foi cadastrado com sucesso'
                 this.alert = true
             }
-        }
+        },
+        get_user_data_error(){
+            if(this.get_user_data_error){
+                this.alert_type = 'error'
+                this.message = this.get_user_data_error_message
+                this.alert = true
+            }
+        },
     }
 }
 </script>
